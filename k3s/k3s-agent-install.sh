@@ -37,8 +37,6 @@ fi
     fi
     curl -sfL http://${1}/get-k3s | K3S_NODE_NAME=${4} K3S_URL=https://${2}:6443 K3S_TOKEN=${3} INSTALL_K3S_SKIP_DOWNLOAD=true sh -
 
-    echo "install successfully, sleeping"
-    # wait for collecting metrics
-    sleep 60
+    echo "install successfully"
 
 } 3<>$lock

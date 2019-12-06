@@ -37,8 +37,6 @@ fi
     fi
     curl -sfL http://${1}/get-k3s | INSTALL_K3S_SKIP_DOWNLOAD=true sh -
 
-    echo "install successfully, sleeping"
-    # wait for collecting metrics
-    sleep 60
+    echo "install successfully"
 
 } 3<>$lock
