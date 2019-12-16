@@ -125,7 +125,7 @@ def install_slave(ip, private_key, name, master_ip, token):
 
 
 def install(direc):
-    state = json.loads(os.popen("cd %s; terraform show -json" % (direc)).read())
+    state = getstate(direc)
     for resource in state['values']['root_module']['resources']:
         if resource['address'] == "openstack_compute_keypair_v2.k3s":
             private_key_file = TemporaryFile('w+')
@@ -157,6 +157,8 @@ def provider(direc):
 def destroy(direc):
     os.system("cd %s; terraform destroy -auto-approve" % (direc))
 
+def getstate(direc):
+    return json.loads(os.popen("cd %s; terraform show -json" % (direc)).read())
 
 def mkdir(path):
     folder = os.path.exists(path)
